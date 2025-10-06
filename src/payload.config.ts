@@ -83,7 +83,6 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins: [
     ...plugins,
-    payloadCloudPlugin(),
     vercelBlobStorage({
       enabled: true,
       clientUploads: true,
