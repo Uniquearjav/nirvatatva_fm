@@ -49,7 +49,11 @@ export const Image: React.FC<MediaProps> = (props) => {
 
     const filename = fullFilename
 
-    src = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`
+    // If URL is already absolute (e.g., from Vercel Blob Storage), use it directly
+    // Otherwise, prepend the server URL for local storage
+    src = url?.startsWith('http://') || url?.startsWith('https://') 
+      ? url 
+      : `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`
   }
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
