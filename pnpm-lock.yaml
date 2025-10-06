@@ -36,7 +36,7 @@ importers:
         specifier: 3.58.0
         version: 3.58.0(@faceless-ui/modal@3.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@payloadcms/next@3.58.0(@types/react@19.0.1)(graphql@16.11.0)(monaco-editor@0.53.0)(next@15.5.4(@babel/core@7.28.4)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.58.0(graphql@16.11.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2))(@types/react@19.0.1)(monaco-editor@0.53.0)(next@15.5.4(@babel/core@7.28.4)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.58.0(graphql@16.11.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)(yjs@13.6.27)
       '@payloadcms/storage-vercel-blob':
-        specifier: ^3.58.0
+        specifier: 3.58.0
         version: 3.58.0(@types/react@19.0.1)(monaco-editor@0.53.0)(next@15.5.4(@babel/core@7.28.4)(@playwright/test@1.50.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.58.0(graphql@16.11.0)(typescript@5.7.2))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.2)
       '@payloadcms/translations':
         specifier: 3.58.0
