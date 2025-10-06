@@ -83,12 +83,16 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins: [
     ...plugins,
+    payloadCloudPlugin(),
     vercelBlobStorage({
       enabled: true,
+      clientUploads: true,
       collections: {
-        media: true,
+        media: {
+          prefix: 'media',
+        },
       },
-      token: process.env.VERCEL_BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
       access: 'public', // 👈 ensures all uploads are publicly accessible
     }),
   ],
