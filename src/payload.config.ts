@@ -82,6 +82,7 @@ export default buildConfig({
   endpoints: [],
   globals: [Header, Footer],
   plugins: [
+    ...plugins,
     vercelBlobStorage({
       enabled: true,
       collections: {
@@ -90,7 +91,6 @@ export default buildConfig({
       token: process.env.VERCEL_BLOB_READ_WRITE_TOKEN,
       access: 'public', // 👈 ensures all uploads are publicly accessible
     }),
-    ...plugins,
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
