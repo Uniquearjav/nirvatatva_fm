@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-
+import sharp from 'sharp';
 import {
   BoldFeature,
   EXPERIMENTAL_TableFeature,
