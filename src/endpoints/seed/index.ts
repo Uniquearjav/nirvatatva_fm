@@ -24,7 +24,6 @@ const collections: CollectionSlug[] = [
   'carts',
   'transactions',
   'addresses',
-  'orders',
 ]
 
 const sizeVariantOptions = [

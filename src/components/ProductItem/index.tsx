@@ -1,8 +1,7 @@
 import { Media } from '@/components/Media'
-import { OrderStatus } from '@/components/OrderStatus'
 import { Price } from '@/components/Price'
 import { Button } from '@/components/ui/button'
-import { Media as MediaType, Order, Product, Variant } from '@/payload-types'
+import { Media as MediaType, Product, Variant } from '@/payload-types'
 import { formatDateTime } from '@/utilities/formatDateTime'
 import Link from 'next/link'
 

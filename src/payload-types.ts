@@ -92,8 +92,6 @@ export interface Config {
   };
   collectionsJoins: {
     users: {
-      orders: 'orders';
-      cart: 'carts';
       addresses: 'addresses';
     };
     variantTypes: {
@@ -184,16 +182,6 @@ export interface User {
   id: string;
   name?: string | null;
   roles?: ('admin' | 'customer')[] | null;
-  orders?: {
-    docs?: (string | Order)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  cart?: {
-    docs?: (string | Cart)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
   addresses?: {
     docs?: (string | Address)[];
     hasNextPage?: boolean;
@@ -219,208 +207,64 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders".
+ * via the `definition` "addresses".
  */
-export interface Order {
+export interface Address {
   id: string;
-  items?:
-    | {
-        product?: (string | null) | Product;
-        variant?: (string | null) | Variant;
-        quantity: number;
-        id?: string | null;
-      }[]
-    | null;
-  shippingAddress?: {
-    title?: string | null;
-    firstName?: string | null;
-    lastName?: string | null;
-    company?: string | null;
-    addressLine1?: string | null;
-    addressLine2?: string | null;
-    city?: string | null;
-    state?: string | null;
-    postalCode?: string | null;
-    country?: string | null;
-    phone?: string | null;
-  };
   customer?: (string | null) | User;
-  customerEmail?: string | null;
-  transactions?: (string | Transaction)[] | null;
-  status?: OrderStatus;
-  amount?: number | null;
-  currency?: 'USD' | null;
+  title?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  company?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  postalCode?: string | null;
+  country:
+    | 'US'
+    | 'GB'
+    | 'CA'
+    | 'AU'
+    | 'AT'
+    | 'BE'
+    | 'BR'
+    | 'BG'
+    | 'CY'
+    | 'CZ'
+    | 'DK'
+    | 'EE'
+    | 'FI'
+    | 'FR'
+    | 'DE'
+    | 'GR'
+    | 'HK'
+    | 'HU'
+    | 'IN'
+    | 'IE'
+    | 'IT'
+    | 'JP'
+    | 'LV'
+    | 'LT'
+    | 'LU'
+    | 'MY'
+    | 'MT'
+    | 'MX'
+    | 'NL'
+    | 'NZ'
+    | 'NO'
+    | 'PL'
+    | 'PT'
+    | 'RO'
+    | 'SG'
+    | 'SK'
+    | 'SI'
+    | 'ES'
+    | 'SE'
+    | 'CH';
+  phone?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: string;
-  title: string;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  gallery?:
-    | {
-        image: string | Media;
-        variantOption?: (string | null) | VariantOption;
-        id?: string | null;
-      }[]
-    | null;
-  layout?: (CallToActionBlock | ContentBlock | MediaBlock)[] | null;
-  inventory?: number | null;
-  enableVariants?: boolean | null;
-  variantTypes?: (string | VariantType)[] | null;
-  variants?: {
-    docs?: (string | Variant)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  priceInUSDEnabled?: boolean | null;
-  priceInUSD?: number | null;
-  relatedProducts?: (string | Product)[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  categories?: (string | Category)[] | null;
-  slug: string;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  deletedAt?: string | null;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  caption?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  prefix?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "variantOptions".
- */
-export interface VariantOption {
-  id: string;
-  _variantOptions_options_order?: string | null;
-  variantType: string | VariantType;
-  label: string;
-  /**
-   * should be defaulted or dynamic based on label
-   */
-  value: string;
-  updatedAt: string;
-  createdAt: string;
-  deletedAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "variantTypes".
- */
-export interface VariantType {
-  id: string;
-  label: string;
-  name: string;
-  options?: {
-    docs?: (string | VariantOption)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  updatedAt: string;
-  createdAt: string;
-  deletedAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock".
- */
-export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -491,6 +335,84 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt: string;
+  caption?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock".
+ */
+export interface CallToActionBlock {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -592,6 +514,117 @@ export interface Category {
   slugLock?: boolean | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  gallery?:
+    | {
+        image: string | Media;
+        variantOption?: (string | null) | VariantOption;
+        id?: string | null;
+      }[]
+    | null;
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock)[] | null;
+  inventory?: number | null;
+  enableVariants?: boolean | null;
+  variantTypes?: (string | VariantType)[] | null;
+  variants?: {
+    docs?: (string | Variant)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  priceInUSDEnabled?: boolean | null;
+  priceInUSD?: number | null;
+  relatedProducts?: (string | Product)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  categories?: (string | Category)[] | null;
+  slug: string;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "variantOptions".
+ */
+export interface VariantOption {
+  id: string;
+  _variantOptions_options_order?: string | null;
+  variantType: string | VariantType;
+  label: string;
+  /**
+   * should be defaulted or dynamic based on label
+   */
+  value: string;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "variantTypes".
+ */
+export interface VariantType {
+  id: string;
+  label: string;
+  name: string;
+  options?: {
+    docs?: (string | VariantOption)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "variants".
+ */
+export interface Variant {
+  id: string;
+  /**
+   * Used for administrative purposes, not shown to customers. This is populated by default.
+   */
+  title?: string | null;
+  product: string | Product;
+  options: (string | VariantOption)[];
+  inventory?: number | null;
+  priceInUSDEnabled?: boolean | null;
+  priceInUSD?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -862,23 +895,78 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "variants".
+ * via the `definition` "form-submissions".
  */
-export interface Variant {
+export interface FormSubmission {
   id: string;
-  /**
-   * Used for administrative purposes, not shown to customers. This is populated by default.
-   */
-  title?: string | null;
-  product: string | Product;
-  options: (string | VariantOption)[];
-  inventory?: number | null;
-  priceInUSDEnabled?: boolean | null;
-  priceInUSD?: number | null;
+  form: string | Form;
+  submissionData?:
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
-  deletedAt?: string | null;
-  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "carts".
+ */
+export interface Cart {
+  id: string;
+  items?:
+    | {
+        product?: (string | null) | Product;
+        variant?: (string | null) | Variant;
+        quantity: number;
+        id?: string | null;
+      }[]
+    | null;
+  customer?: (string | null) | User;
+  purchasedAt?: string | null;
+  status?: ('active' | 'purchased' | 'abandoned') | null;
+  subtotal?: number | null;
+  currency?: 'USD' | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: string;
+  items?:
+    | {
+        product?: (string | null) | Product;
+        variant?: (string | null) | Variant;
+        quantity: number;
+        id?: string | null;
+      }[]
+    | null;
+  shippingAddress?: {
+    title?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    company?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    city?: string | null;
+    state?: string | null;
+    postalCode?: string | null;
+    country?: string | null;
+    phone?: string | null;
+  };
+  customer?: (string | null) | User;
+  customerEmail?: string | null;
+  transactions?: (string | Transaction)[] | null;
+  status?: OrderStatus;
+  amount?: number | null;
+  currency?: 'USD' | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -919,106 +1007,6 @@ export interface Transaction {
   cart?: (string | null) | Cart;
   amount?: number | null;
   currency?: 'USD' | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "carts".
- */
-export interface Cart {
-  id: string;
-  items?:
-    | {
-        product?: (string | null) | Product;
-        variant?: (string | null) | Variant;
-        quantity: number;
-        id?: string | null;
-      }[]
-    | null;
-  customer?: (string | null) | User;
-  purchasedAt?: string | null;
-  status?: ('active' | 'purchased' | 'abandoned') | null;
-  subtotal?: number | null;
-  currency?: 'USD' | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "addresses".
- */
-export interface Address {
-  id: string;
-  customer?: (string | null) | User;
-  title?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  company?: string | null;
-  addressLine1?: string | null;
-  addressLine2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  postalCode?: string | null;
-  country:
-    | 'US'
-    | 'GB'
-    | 'CA'
-    | 'AU'
-    | 'AT'
-    | 'BE'
-    | 'BR'
-    | 'BG'
-    | 'CY'
-    | 'CZ'
-    | 'DK'
-    | 'EE'
-    | 'FI'
-    | 'FR'
-    | 'DE'
-    | 'GR'
-    | 'HK'
-    | 'HU'
-    | 'IN'
-    | 'IE'
-    | 'IT'
-    | 'JP'
-    | 'LV'
-    | 'LT'
-    | 'LU'
-    | 'MY'
-    | 'MT'
-    | 'MX'
-    | 'NL'
-    | 'NZ'
-    | 'NO'
-    | 'PL'
-    | 'PT'
-    | 'RO'
-    | 'SG'
-    | 'SK'
-    | 'SI'
-    | 'ES'
-    | 'SE'
-    | 'CH';
-  phone?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-submissions".
- */
-export interface FormSubmission {
-  id: string;
-  form: string | Form;
-  submissionData?:
-    | {
-        field: string;
-        value: string;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1134,8 +1122,6 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   roles?: T;
-  orders?: T;
-  cart?: T;
   addresses?: T;
   updatedAt?: T;
   createdAt?: T;

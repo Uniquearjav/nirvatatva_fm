@@ -58,22 +58,6 @@ export const FindOrderForm: React.FC<Props> = ({ initialEmail }) => {
           />
           {errors.email && <FormError message={errors.email.message} />}
         </FormItem>
-        <FormItem>
-          <Label htmlFor="orderID" className="mb-2">
-            Order ID
-          </Label>
-          <Input
-            id="orderID"
-            {...register('orderID', {
-              required: 'Order ID is required. You can find this in your email.',
-            })}
-            type="text"
-          />
-          {errors.orderID && <FormError message={errors.orderID.message} />}
-        </FormItem>
-        <Button type="submit" className="self-start" variant="default">
-          Find my order
-        </Button>
       </form>
     </Fragment>
   )
