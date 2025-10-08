@@ -6,11 +6,13 @@ import {
   EXPERIMENTAL_TableFeature,
   IndentFeature,
   ItalicFeature,
+  AlignFeature,
   LinkFeature,
   OrderedListFeature,
   UnderlineFeature,
   UnorderedListFeature,
   lexicalEditor,
+  ParagraphFeature,
 } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -51,6 +53,8 @@ export default buildConfig({
         ItalicFeature(),
         OrderedListFeature(),
         UnorderedListFeature(),
+        AlignFeature(),
+        ParagraphFeature(),
         LinkFeature({
           enabledCollections: ['pages'],
           fields: ({ defaultFields }) => {
@@ -99,8 +103,5 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  // Sharp is now an optional dependency -
-  // if you want to resize images, crop, set focal point, etc.
-  // make sure to install it and pass it to the config.
   sharp,
 })
