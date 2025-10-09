@@ -52,8 +52,8 @@ export const Gallery: React.FC<Props> = ({ gallery }) => {
       <div className="relative w-full overflow-hidden mb-8">
         <Media
           resource={gallery[current].image}
-          className="w-full"
-          imgClassName="w-full rounded-lg"
+          className="w-full scale-90 aspect-[4/5] rounded-lg"
+          imgClassName="w-full bg-[whitesmoke] scale-85 rounded-lg"
         />
       </div>
 

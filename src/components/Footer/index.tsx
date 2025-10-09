@@ -13,7 +13,6 @@ export async function Footer() {
   const footer: Footer = await getCachedGlobal('footer', 1)()
   const menu = footer.navItems || []
   const currentYear = new Date().getFullYear()
-  const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '')
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700'
 
   const copyrightName = COMPANY_NAME || SITE_NAME || ''
@@ -50,11 +49,10 @@ export async function Footer() {
       <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
         <div className="container mx-auto flex w-full flex-col items-center gap-1 md:flex-row md:gap-0">
           <p>
-            &copy; {copyrightDate} {copyrightName}
-            {copyrightName.length && !copyrightName.endsWith('.') ? '.' : ''} All rights reserved.
+            &copy; {currentYear} - All rights reserved.
           </p>
           <p className="md:ml-auto">
-            <a className="text-black dark:text-white" href="https://payloadcms.com">
+            <a className="text-black dark:text-white" href="https://nirvatatva.com">
               Nirvatatva
             </a>
           </p>
