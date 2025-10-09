@@ -25,6 +25,8 @@ import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { plugins } from './plugins'
+import importExportPlugin  from 'payload-plugin-import-export';
+import type { User } from "@/payload-types.ts";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -81,6 +83,11 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins: [
     ...plugins,
+    importExportPlugin({
+      enabled: true,
+      excludeCollections: ["users"],
+      canImport: () => true, 
+    }),
     vercelBlobStorage({
       enabled: true,
       clientUploads: true,
