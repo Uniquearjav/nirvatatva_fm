@@ -26,7 +26,6 @@ import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { plugins } from './plugins'
 import importExportPlugin  from 'payload-plugin-import-export';
-import type { User } from "@/payload-types.ts";
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,6 +33,17 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
+    },
+    meta: {
+      titleSuffix: ' - Nirvatatva',
+      description: 'Nirvatatva Admin Panel',
+      icons: [
+        {
+          type: 'image/png',
+          rel: 'icon',
+          url: '/assets/nt-logo.png',
+        },
+    ],
     },
     user: Users.slug,
   },

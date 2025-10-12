@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoIcon from '../../../public/nt_logo.png'
+import LogoIcon from '../../../public/assets/nt_logo.png'
 import Image from 'next/image'
 export const Logo = () => {
   return (

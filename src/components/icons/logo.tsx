@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import React from 'react'
-import Logo from '../../../public/nt_logo.png'
+import Logo from '../../../public/assets/nt_logo.png'
 
 export function LogoIcon(props: React.ComponentProps<'svg'>) {
   return (
