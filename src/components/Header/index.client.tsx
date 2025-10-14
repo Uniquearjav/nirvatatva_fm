@@ -29,7 +29,8 @@ export function HeaderClient({ header }: Props) {
         <div className="flex w-full items-end justify-between">
           <div className="flex w-full items-end gap-6 md:w-1/3">
             <Link className="flex w-full items-center justify-center pt-4 pb-4 md:w-auto" href="/">
-              <LogoIcon />
+              <LogoIcon className='h-8 w-16' />
+              <span className='px-2 font-bold'>Nirvatatva</span>
             </Link>
             {menu.length ? (
               <ul className="hidden gap-4 text-sm md:flex md:items-center">

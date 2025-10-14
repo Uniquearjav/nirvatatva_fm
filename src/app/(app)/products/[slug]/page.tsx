@@ -74,13 +74,6 @@ export default async function ProductPage({ params }: Args) {
       })) || []
 
   const metaImage = typeof product.meta?.image === 'object' ? product.meta?.image : undefined
-  const hasStock = product.enableVariants
-    ? product?.variants?.docs?.some((variant) => {
-        if (typeof variant !== 'object') return false
-        return variant.inventory && variant?.inventory > 0
-      })
-    : product.inventory! > 0
-
   let price = product.priceInUSD
 
   if (product.enableVariants && product?.variants?.docs?.length) {
@@ -100,7 +93,7 @@ export default async function ProductPage({ params }: Args) {
     image: metaImage?.url,
     offers: {
       '@type': 'AggregateOffer',
-      availability: hasStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      availability:'https://schema.org/InStock',
       price: price,
       priceCurrency: 'usd',
     },

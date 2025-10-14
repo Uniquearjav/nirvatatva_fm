@@ -53,7 +53,7 @@ export function MobileMenu({ menu }: Props) {
 
       <SheetContent side="left" className="px-4">
         <SheetHeader className="px-0 pt-4 pb-0">
-          <SheetTitle>My Store</SheetTitle>
+          <SheetTitle>Nirvatatva</SheetTitle>
 
           <SheetDescription />
         </SheetHeader>
@@ -69,39 +69,6 @@ export function MobileMenu({ menu }: Props) {
             </ul>
           ) : null}
         </div>
-
-        {user ? (
-          <div className="mt-4">
-            <h2 className="text-xl mb-4">My account</h2>
-            <hr className="my-2" />
-            <ul className="flex flex-col gap-2">
-              <li>
-                <Link href="/account/addresses">Addresses</Link>
-              </li>
-              <li>
-                <Link href="/account">Manage account</Link>
-              </li>
-              <li className="mt-6">
-                <Button asChild variant="outline">
-                  <Link href="/logout">Log out</Link>
-                </Button>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <div>
-            <h2 className="text-xl mb-4">My account</h2>
-            <div className="flex items-center gap-2 mt-4">
-              <Button asChild className="w-full" variant="outline">
-                <Link href="/login">Log in</Link>
-              </Button>
-              <span>or</span>
-              <Button asChild className="w-full">
-                <Link href="/create-account">Create an account</Link>
-              </Button>
-            </div>
-          </div>
-        )}
       </SheetContent>
     </Sheet>
   )
